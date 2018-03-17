@@ -37,9 +37,7 @@ RUN superset db upgrade
 RUN superset load_examples
 RUN superset init
 
-EXPOSE 8088
 ENV PYTHONPATH /etc/superset
-
-
-
-CMD ["superset", "runserver"]
+ADD entrypoint.sh /
+RUN chmod +x /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
